@@ -1,17 +1,25 @@
 # Amazon Clone REST API
 
-A simple Node.js + Express REST API for an Amazon clone, built with TypeScript, Drizzle ORM, Postgres, and Clerk authentication. Designed for use with a React Native frontend.
+A simple Node.js + Express REST API for an Amazon clone, built with TypeScript, MongoDB, Mongoose, and Clerk authentication. Designed for use with a React Native frontend.
+
+
+## Attribution
+
+This project is a modified version of the [Amazon Clone REST API](https://github.com/Galaxies-dev/amazon-node-api/tree/main) by Galaxies.dev.
+The original data store (PostgreSQL/Drizzle) has been replaced with MongoDB/Mongoose.
+
+Playstation GLB from https://sketchfab.com/3d-models/ps5-d788de3735964151a3e24fd59c0f1956
 
 ## Features
 - User authentication with Clerk
 - REST endpoints for articles and orders
 - Webhook endpoint for Clerk user creation
-- PostgreSQL database with Drizzle ORM
+- MongoDB database with Mongoose ODM
 - TypeScript and live reload for development
 
 ## Prerequisites
 - Node.js (v18+ recommended)
-- PostgreSQL (local or remote)
+- MongoDB (local or remote)
 - Clerk account (for authentication)
 
 ## Installation
@@ -22,7 +30,7 @@ npm install
 ## Environment Variables
 Copy `.env.example` to `.env` and fill in your values:
 ```
-DATABASE_URL=postgres://user:password@localhost:5432/amazon_clone
+MONGO_URI=mongodb://localhost:27017/amazon-api
 CLERK_SECRET_KEY=your-clerk-secret-key
 CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
 CLERK_JWT_KEY=
@@ -39,16 +47,6 @@ STRIPE_PUBLISHABLE_KEY=
   ```bash
   npm run build && npm start
   ```
-
-## Database Migrations
-To generate and apply migrations, use:
-
-```bash
-npm run migrate:generate # Generate migration files from schema
-npm run migrate:push     # Apply migrations to your database
-```
-
-Make sure your DATABASE_URL is set in your .env file before running migrations.
 
 ## API Endpoints
 ### Health Check
@@ -73,7 +71,3 @@ Make sure your DATABASE_URL is set in your .env file before running migrations.
 
 ### Clerk Webhook
 - `POST /webhooks/clerk` — Handles Clerk user creation events
-
-## Attribution
-
-Playstation GLB from https://sketchfab.com/3d-models/ps5-d788de3735964151a3e24fd59c0f1956
